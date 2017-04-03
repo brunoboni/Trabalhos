@@ -19,8 +19,9 @@ namespace MesaBNDV.Mesa.Service.Api.Providers
 
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext c)
         {
+
             // Aqui você deve implementar sua regra de autenticação
-            if (c.UserName == "leonardo" && c.Password == "123123")
+            if (validarUsuario(c).Item4)
             {
                 Claim claim1 = new Claim(ClaimTypes.Name, c.UserName);
                 Claim[] claims = new Claim[] { claim1 };
@@ -31,6 +32,15 @@ namespace MesaBNDV.Mesa.Service.Api.Providers
             }
 
             return Task.FromResult<object>(null);
+        }
+
+        private Tuple<string,string,int,bool> validarUsuario(OAuthGrantResourceOwnerCredentialsContext c)
+        {
+            //Conectar com o Repositorio
+            if (c.UserName == "Bruno" && c.Password == "123456")
+                return Tuple.Create("Bruno", "Boni", 28, true);
+
+            return Tuple.Create("Bruno", "Boni", 00, false);
         }
     }
 }
