@@ -16,7 +16,11 @@ namespace MesaBNDV.Mesa.Service.Api.Providers
 
             return Task.FromResult<object>(null);
         }
-
+        /// <summary>
+        /// Validação de usuario ia Claims
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext c)
         {
 
